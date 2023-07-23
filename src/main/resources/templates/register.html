@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container p-3 align-items-center">
+			<div class="row ">
+				<div class="col-md-6 offset-md-3">
+					<div class="card">
+						<div class="card-header text-center fs-4">Register Page</div>
+
+
+						<th:block th:if="${session.message}">
+							<p class="text-center text-success fs-4">[[${session.message}]]</p>
+							<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+
+						</th:block>
+
+						<div class="card-body">
+							<form action="saveUser" method="post">
+
+								<div class="row">
+									<div class="col-md-6 mb-4">
+								<div class="mb-3">
+									 <input type="text" name="username"
+										class="form-control">
+									<label> username</label>
+								</div>
+									</div>
+									</div>
+
+								<div class="row">
+									<div class="col-md-6 mb-4">
+										<div class="mb-3">
+											<input type="text" id="firstName" class="form-control" name="first_name"
+											/>
+											<label class="form-label" for="firstName">First name</label>
+
+										</div>
+									</div>
+									<!--  first name input-->
+									<div class="col-md-6 mb-4">
+										<div class="mb-3">
+											<input type="text" id="lastName" class="form-control" name="last_name" />
+											<label class="fom-label" for="lastName" >Last name</label>
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+									<div class="row">
+										<!-- Email input -->
+										<div class="col-md-6 mb-4">
+											<div class="mb-3 ">
+												<input type="email" id="email" class="form-control" name="email"/>
+												<label class="form-label" for="email">Email address</label>
+											</div>
+										</div>
+										<!--phone input-->
+										<div class="col-md-6 mb-4">
+											<div class="mb-3 ">
+												<input type="tel" id="phone" class="form-control" name="mobileNo" />
+												<label class="form-label" for="phone">Phone Number</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6 mb-4">
+											<div class="mb-3 ">
+												<input type="date" id="dob" class="form-control" name="dob"/>
+												<label class="form-label" for="dob">DOB</label>
+											</div>
+										</div>
+										</div>
+
+
+									<div class="row">
+										<div class="col-md-6 mb-4">
+											<div class="mb-3 ">
+												<input type="password" id="form3Example4" class="form-control" name="password" />
+												<label class="form-label" for="form3Example4">Password</label>
+											</div>
+										</div>
+										<!--  Confirm Password input -->
+
+										<div class="col-md-6 mb-4">
+										<div class="mb-3 ">
+
+												<input type="password" id="confirm" class="form-control"  name="confirm_password"/>
+												<label class="form-label" for="confirm"> Confirm Password</label>
+											</div>
+										</div>
+
+
+									</div>
+								<button class="btn btn-primary col-md-12">Register</button>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+	</section>
+</body>
+</html>
