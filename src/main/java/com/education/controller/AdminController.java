@@ -1,7 +1,8 @@
 package com.education.controller;
 
-import java.security.Principal;
 
+import com.education.entity.User;
+import com.education.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.education.entity.User;
-import com.education.repository.UserRepo;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,6 +30,6 @@ public class AdminController {
 
 	@GetMapping("/profile")
 	public String profile() {
-		return "admin/admin_profile";
+		return "admin_profile";
 	}
 }

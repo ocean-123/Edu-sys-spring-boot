@@ -1,44 +1,34 @@
 package com.education.service;
 
+
+import com.education.entity.User;
+import com.education.repository.UserRepo;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.education.entity.User;
-import com.education.repository.UserRepo;
-
-import jakarta.servlet.http.HttpSession;
-
 @Service
-public  class UserServiceImpl implements UserService {
-
-
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepo userRepo;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
-
-
-
-
-
+	
 	@Override
 	public User saveUser(User user) {
 
-		String encodedPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encodedPassword);
-		String encodedConfirmPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(encodedConfirmPassword);
+		String password=passwordEncoder.encode(user.getPassword());
+		user.setPassword(password);
+		user.setRole("ROLE_USER");
+		User newuser = userRepo.save(user);
 
-
-		return userRepo.save(user);
+		return newuser;
 	}
-
 
 	@Override
 	public void removeSessionMessage() {
@@ -46,13 +36,7 @@ public  class UserServiceImpl implements UserService {
 		HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest()
 				.getSession();
 
-		session.removeAttribute("message");
+		session.removeAttribute("msg");
 	}
-
-//	@Override
-//	public User findByEmailOrUsername(String emailOrUsername) {
-//		User user = userRepo.findByEmailOrUsername(emailOrUsername,emailOrUsername);
-//		return user;
-//	}
 
 }

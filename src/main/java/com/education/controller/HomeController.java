@@ -1,7 +1,10 @@
 package com.education.controller;
 
-import java.security.Principal;
 
+import com.education.entity.User;
+import com.education.repository.UserRepo;
+import com.education.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.education.entity.User;
-import com.education.repository.UserRepo;
-import com.education.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -34,7 +33,7 @@ public class HomeController {
 
 	}
 
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
@@ -49,6 +48,32 @@ public class HomeController {
 		return "login";
 	}
 
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+	}
+	@GetMapping("/courses")
+	public String courses() {
+		return "courses";
+	}
+	@GetMapping("/about")
+	public String about() {
+		return "about";
+	}
+	@GetMapping("/trainers")
+	public String trainers() {
+		return "trainers";
+	}
+
+	@GetMapping("/events")
+	public String event() {
+		return "events";
+	}
+
+	@GetMapping("/pricing")
+	public String pricing() {return "pricing";
+	}
+
 	/*
 	 * @GetMapping("/user/profile") public String profile(Principal p, Model m) {
 	 * String email = p.getName(); User user = userRepo.findByEmail(email);
@@ -59,7 +84,8 @@ public class HomeController {
 
 	@PostMapping("/saveUser")
 	public String saveUser(@ModelAttribute User user, HttpSession session, Model m) {
-		// Check if any user exists in the database with the same email
+
+		// System.out.println(user);
 		if (userRepo.existsByEmail(user.getEmail())) {
 			session.setAttribute("message", "Email already exists");
 			return "register";
@@ -98,24 +124,17 @@ public class HomeController {
 			return "register";
 		}
 
-		// Set role based on the number of users in the database
-		if (userRepo.count() == 0) {
-			user.setRole("ROLE_ADMIN");
-		} else {
-			user.setRole("ROLE_USER");
-		}
-
-		// Save the user to the database
 		User u = userService.saveUser(user);
 
 		if (u != null) {
-			session.setAttribute("message", "Register successfully");
-		} else {
-			session.setAttribute("message", "Something wrong server");
-		}
+			// System.out.println("save sucess");
+			session.setAttribute("msg", "Register successfully");
 
+		} else {
+			// System.out.println("error in server");
+			session.setAttribute("msg", "Something wrong server");
+		}
 		return "redirect:/register";
 	}
-
 
 }
