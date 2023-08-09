@@ -128,11 +128,11 @@ public class HomeController {
 
 		if (u != null) {
 			// System.out.println("save sucess");
-			session.setAttribute("msg", "Register successfully");
+			session.setAttribute("message", "Register successfully");
 
 		} else {
 			// System.out.println("error in server");
-			session.setAttribute("msg", "Something wrong server");
+			session.setAttribute("message", "Something wrong server");
 		}
 		return "redirect:/register";
 	}

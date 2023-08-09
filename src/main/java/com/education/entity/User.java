@@ -1,13 +1,11 @@
 package com.education.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.awt.*;
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,6 +37,9 @@ private  String username;
 
 
 	private String role;
+//	@OneToOne
+//	@JoinColumn(name = "profile_pic_id")
+//	private Images profilePic;
 
 	public int getId() {
 		return id;
@@ -119,4 +120,12 @@ private  String username;
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+//	public Images getProfilePic() {
+//		return profilePic;
+//	}
+//
+//	public void setProfilePic(Images profilePic) {
+//		this.profilePic = profilePic;
+//	}
 }

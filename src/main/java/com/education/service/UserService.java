@@ -9,4 +9,6 @@ public interface UserService {
 
 	public void removeSessionMessage();
 
+	void deleteUserById(Long id);
+
 }

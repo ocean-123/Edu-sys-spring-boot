@@ -4,6 +4,7 @@ package com.education.service;
 import com.education.entity.User;
 import com.education.repository.UserRepo;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 		user.setRole("ROLE_USER");
 		User newuser = userRepo.save(user);
 
+
 		return newuser;
 	}
 
@@ -36,7 +38,13 @@ public class UserServiceImpl implements UserService {
 		HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest()
 				.getSession();
 
-		session.removeAttribute("msg");
+		session.removeAttribute("message");
+	}
+
+	@Override
+	@Transactional
+	public void deleteUserById(Long id) {
+		userRepo.deleteById(id);
 	}
 
 }
