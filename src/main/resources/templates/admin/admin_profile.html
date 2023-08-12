@@ -6,13 +6,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<section class="text-center">
+	<section >
 
+		<!-- Display the number of users, events, and courses -->
+		<div>
+			<p>Total Number of Users: <span th:text="${numberOfUsers}"></span></p>
+<!--			<p>Total Number of Events: <span th:text="${numberOfEvents}"></span></p>-->
+			<p>Total Number of Courses: <span th:text="${numberOfCourses}"></span></p>
+		</div>
 
-		<h4>Name: [[${user.username}]]</h4>
-		<h4>Email: [[${user.email}]]</h4>
-		<h4>Mob No: [[${user.mobileNo}]]</h4>
-		<h4>Role: [[${user.role}]]</h4>
 
 	</section>
 </body>

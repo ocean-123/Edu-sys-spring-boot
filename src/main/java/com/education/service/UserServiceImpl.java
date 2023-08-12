@@ -47,4 +47,11 @@ public class UserServiceImpl implements UserService {
 		userRepo.deleteById(id);
 	}
 
+
+	@Override
+	public Long getTotalNumberOfUsers(){
+		return  userRepo.count();
+
+	}
+
 }
