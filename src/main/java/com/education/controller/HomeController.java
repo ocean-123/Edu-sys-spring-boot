@@ -40,6 +40,15 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	@GetMapping("/ieltsClass")
+	public String ielts() {
+		return "ieltsClass";
+	}
+	@GetMapping("/pteClass")
+	public String pte() {
+		return "pteClass";
+	}
+
 
 	@GetMapping("/register")
 	public String register() {
