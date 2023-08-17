@@ -1,40 +1,113 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="/admin/base_admin::layout(~{::section})">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div th:replace="fragment/adminLinks::adminLinks"></div>
+
 </head>
-<body>
-<section>
-    <h2>Add New Course</h2>
-    <form th:action="@{/admin/add-course}" method="post" enctype="multipart/form-data">
-        <label for="coursename">Course Name:</label>
-        <input type="text" id="coursename" name="coursename" required><br>
-        <label for="image">Image:</label>
-        <input type="file" id="image" name="imageFile"  required><br>
-        <label for="courseDetails">Course Details:</label>
-        <textarea id="courseDetails" name="courseDetails" required></textarea><br>
-        <button type="submit">Save Course</button>
-    </form>
+<body id="body-pd">
+<div th:replace="fragment/adminHeader::adminHeader">
 
-    <!-- Display courses -->
-    <h2>Course List</h2>
-    <div th:each="course : ${courses}">
-        <div>
-            <h3 th:text="${course.coursename}"></h3>
-            <img th:src="${course.image}" th:alt="${course.coursename}">
-<!--            <img th:src="@{/assets/img/${course.image}}" th:alt="${course.coursename}">-->
+</div>
 
-            <p th:text="${course.courseDetails}"></p>
-
-
-                <a class="btn btn-danger" th:href="@{/admin/delete-course/{id}(id=${course.id})}">Delete</a>
+<div th:replace="fragment/adminContent::adminContent"></div>
 
 
 
+
+<!--    &lt;!&ndash; Display courses &ndash;&gt;-->
+<!--    <h2>Course List</h2>-->
+<!--    <div th:each="course : ${courses}">-->
+<!--        <div>-->
+<!--            <h3 th:text="${course.coursename}"></h3>-->
+<!--            <img th:src="${course.image}" th:alt="${course.coursename}">-->
+<!--&lt;!&ndash;            <img th:src="@{/assets/img/${course.image}}" th:alt="${course.coursename}">&ndash;&gt;-->
+
+<!--            <p th:text="${course.courseDetails}"></p>-->
+
+
+<!--                <a class="btn btn-danger" th:href="@{/admin/delete-course/{id}(id=${course.id})}">Delete</a>-->
+
+
+
+<!--        </div>-->
+<!--    </div>-->
+
+
+
+    <div class ="container">
+        <div class = "row">
+            <h1> List Event </h1>
+        </div>
+
+<!--        <div class = "row">-->
+<!--            <div class = "col-lg-3">-->
+<!--                <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add Student</a>-->
+<!--            </div>-->
+
+        <table class = "table table-striped table-bordered">
+            <thead class = "table-dark">
+            <tr>
+                <th>Event Title</th>
+                <th>  Image</th>
+                <th>  Event Info </th>
+                <th> Actions </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each = "course: ${courses}">
+                <td th:text = "${course.coursename}"></td>
+                <td >  <img th:src="${course.image}" th:alt="${course.coursename}" style="max-width: 100px;">
+
+                    </td>
+                <td th:text = "${course.courseDetails}"></td>
+                <td>
+                    <a th:href="@{/admin/edit-course/{id}(id=${course.id})}" class="btn btn-primary">Update</a>
+
+
+                    <a th:href ="@{/admin/delete-course/{id}(id=${course.id})}"
+                       class = "btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+<hr>
+<hr>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h2 class = "text-center">Add New Events</h2>
+            <div class = "card-body">
+                <form th:action="@{/admin/add-course}" method="post" enctype="multipart/form-data">
+                    <div class ="form-group">
+                        <label for="coursename">Course Name:</label>
+                        <input type="text" id="coursename" name="coursename" required><br>
+                    </div>
+                    <div class ="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" id="image" name="imageFile"  required><br>
+                    </div>
+                    <div class ="form-group">
+                        <label for="courseDetails">Course Details:</label>
+                        <textarea id="courseDetails" name="courseDetails" required></textarea><br>
+                    </div>
+                    <div class = "box-footer">
+                        <button type="submit"  class = "btn btn-primary" style="text-align: center">Save Events</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
+
+    <div th:replace="fragment/adminScript::adminScript"></div>
 
 </body>
 </html>

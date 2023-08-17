@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info</title>
+    <div th:replace="fragment/adminLinks::adminLinks"></div>
+
+</head>
+<body id="body-pd">
+<div th:replace="fragment/adminHeader::adminHeader">
+
+</div>
+
+<div th:replace="fragment/adminContent::adminContent"></div>
+
+
+
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h2 class = "text-center">Add Country and University Information</h2>
+            <div class = "card-body">
+
+<form th:action="@{/admin/add-country}" method="post" enctype="multipart/form-data">
+
+
+    <div class ="form-group">
+
+
+        <label for="countryname">Choose Country :</label>
+        <select id="countryname" name="countryName">
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <option value="Uk">Uk</option>
+            <option value="USA">USA</option>
+        </select><br>
+    </div>
+    <div class ="form-group">
+        <label for="image">Country Image :</label>
+        <input type="file" id="image" name="imageFile2"  required><br>
+    </div>
+    <div class ="form-group">
+        <label for="courseDetails">University Name:</label>
+        <input id="courseDetails" name="universityName" required><br>
+    </div>
+    <div class="form-group">
+        <label for="universityImage">University Image:</label>
+        <input type="file" id="universityImage" name="universityImageFile" required><br>
+    </div>
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required><br>
+    </div>
+    <div class = "box-footer">
+        <button type="submit"  class = "btn btn-primary" style="text-align: center">Save country</button>
+
+    </div>
+
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div th:replace="fragment/adminScript::adminScript"></div>
+
+
+</body>
+</html>

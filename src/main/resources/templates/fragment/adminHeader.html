@@ -1,0 +1,32 @@
+<header class="header " id="header" th:fragment="adminHeader" >
+  <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+  <!--    <div class="h1 align-self-start ">Admin Dashboard</div>-->
+
+  <!-- <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div> -->
+  <nav class="navbar bg-body-tertiary " >
+    <div class="container-fluid">
+
+
+
+      <form class="d-flex" role="search">
+
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success me-5" type="submit">Search</button>
+
+        <div class="header_img"> <img src="/assets/img/IMG-20230307-WA0009.jpg" alt=""> </div>
+        <!-- Image Upload Form -->
+        <!--                <img src="path_to_your_profile_picture.jpg" a style=" width: 80px;-->
+        <!--    height: 80px;-->
+        <!--    border-radius: 50%;-->
+        <!--    border: 2px solid #fff;-->
+        <!--    object-fit: cover;-->
+        <!--">-->
+
+        <!-- Display Image from Database -->
+        <!--                <div class="header_img">-->
+        <!--                    <img th:if="${user.profilePic}" th:src="@{'/images/' + ${user.profilePic}}" alt="User Image" />-->
+        <!--                </div>-->
+      </form>
+    </div>
+  </nav>
+</header>

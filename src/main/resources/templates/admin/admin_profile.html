@@ -1,21 +1,110 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	  th:replace="/admin/base_admin::layout(~{::section})">
+	>
+
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+		<div th:replace="fragment/adminLinks::adminLinks"></div>
+
 </head>
-<body>
-	<section >
+<body id="body-pd">
+<div th:replace="fragment/adminHeader::adminHeader">
 
-		<!-- Display the number of users, events, and courses -->
-		<div>
-			<p>Total Number of Users: <span th:text="${numberOfUsers}"></span></p>
-<!--			<p>Total Number of Events: <span th:text="${numberOfEvents}"></span></p>-->
-			<p>Total Number of Courses: <span th:text="${numberOfCourses}"></span></p>
-		</div>
+</div>
+
+<div th:replace="fragment/adminContent::adminContent"></div>
 
 
-	</section>
+
+<div class="align-content-center">
+	<p>Total Number of Users: <span th:text="${numberOfUsers}"></span></p>
+	<p>Total Number of Events: <span th:text="${numberOfEvents}"></span></p>
+	<!--			<p>Total Number of Courses: <span th:text="${numberOfCourses}"></span></p>-->
+</div>
+
+
+		<br>
+		<br>
+<!--		<div>-->
+
+
+
+<!--			&lt;!&ndash; Generate the pie chart using JFreeChart &ndash;&gt;-->
+<!--			<img th:src="@{/webjars/jfreechart/1.5.3/jfreechart.js}"-->
+<!--				 th:attr="data-chart='${numberOfUser},${numberOfCourses}'"-->
+<!--				 alt="Pie Chart">-->
+<!--		</div>-->
+<!--		<div class="col-xl-4 col-lg-5">-->
+
+<!--						<div id="container" style="height: 370px; width: 100%;margin: auto"></div>-->
+<!--					</div>-->
+<!--		<script src="https://code.highcharts.com/highcharts.js"></script>-->
+<!--		<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
+<!--		<script type="text/javascript">-->
+<!--			$.ajax({-->
+<!--				/* for pie chart */-->
+<!--				url: "profileadmin", // Updated endpoint URL-->
+<!--				success: function(result){-->
+<!--					var series = [];-->
+<!--					var data = [];-->
+
+<!--					for(var i = 0; i < result.length; i++){-->
+<!--						var object = {};-->
+<!--						object.name = result[i].coursename; // Change to coursename-->
+<!--						object.y = result[i].numberOfEvents; // Change to numberOfCourses-->
+<!--						data.push(object);-->
+<!--					}-->
+
+<!--					var seriesObject = {-->
+<!--						name: 'Course By Category',-->
+<!--						colorByPoint: true,-->
+<!--						data: data-->
+<!--					};-->
+<!--					series.push(seriesObject);-->
+<!--					drawPieChart(series);-->
+<!--				}-->
+<!--			});-->
+
+<!--			/* for pie chart */-->
+<!--			function drawPieChart(series){-->
+<!--				Highcharts.chart('container', {-->
+<!--					chart: {-->
+<!--						plotBackgroundColor: null,-->
+<!--						plotBorderWidth: null,-->
+<!--						plotShadow: false,-->
+<!--						type: 'pie'-->
+<!--					},-->
+<!--					title: {-->
+<!--						text: 'Course Distribution'-->
+<!--					},-->
+<!--					tooltip: {-->
+<!--						formatter: function() {-->
+<!--							return '<strong>'+this.key+': </strong>'+ this.y;-->
+<!--						}-->
+<!--					},-->
+<!--					plotOptions: {-->
+<!--						pie: {-->
+<!--							allowPointSelect: true,-->
+<!--							cursor: 'pointer',-->
+<!--							dataLabels: {-->
+<!--								enabled: true,-->
+<!--								format: '<b>{point.name}</b>: {point.y}'-->
+<!--							}-->
+<!--						}-->
+<!--					},-->
+<!--					series: series-->
+<!--				});-->
+<!--			}-->
+<!--		</script>-->
+
+
+
+
+		<div th:replace="fragment/adminScript::adminScript"></div>
+
 </body>
 </html>

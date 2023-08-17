@@ -1,14 +1,11 @@
 package com.education.controller;
 
 
+import com.education.entity.Country;
 import com.education.entity.Course;
 import com.education.entity.User;
-import com.education.repository.CourseRepo;
-import com.education.repository.ImageRepo;
 import com.education.repository.UserRepo;
-import com.education.service.CourseService;
-import com.education.service.ImageService;
-import com.education.service.UserService;
+import com.education.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,9 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,15 +30,17 @@ public class AdminController {
 	@Autowired
 	private UserRepo userRepo;
 
-//	@Autowired
-//	private CourseRepo courseRepo;
+	@Autowired
+	private CountryInfo countryInfo;
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private course courseService;
 @Autowired
 private ImageService imageService;
 
-	@Autowired
-	private CourseService courseService;
+
 
 	@ModelAttribute
 	public void commonUser(Principal p, Model m) {
@@ -58,6 +54,8 @@ private ImageService imageService;
 		}
 	}
 
+
+
 	@GetMapping("/profile")
 	public String profile( Model model) {
 
@@ -67,10 +65,15 @@ private ImageService imageService;
 
 		model.addAttribute("numberOfUsers", numberOfUsers);
 //		model.addAttribute("numberOfEvents", numberOfEvents);
-		model.addAttribute("numberOfCourses", numberOfCourses);
+		model.addAttribute("numberOfEvents", numberOfCourses);
 
 
 		return "admin/admin_profile";
+	}
+
+	@GetMapping("Profile")
+	public  String profile_admin(){
+		return "admin/profile";
 	}
 
 	@GetMapping("/test")
@@ -95,7 +98,7 @@ private ImageService imageService;
 
 
 
-
+//controlling Profile picture
 
 	@PostMapping("/upload")
 	public String handleImageUpload(@RequestParam("image") MultipartFile file) throws IOException {
@@ -105,12 +108,28 @@ private ImageService imageService;
 		return "redirect:/";
 	}
 
+
+//	controlling events
 	@GetMapping("/courses")
 	public String courses(Model model) {
 		List<Course> courses = courseService.getAllCourses();
 		model.addAttribute("courses", courses);
 		model.addAttribute("newCourse", new Course());
+		model.addAttribute("courseData", courses);
+
+
 		return "admin/courses";
+	}
+
+	@GetMapping("/profileadmin")
+	@ResponseBody // Indicate that the returned object should be used as the response body
+	public ResponseEntity<List<Course>> Cprofile() {
+		List<Course> categoryDataList =courseService.getAllCourses();
+
+		// Get the data from your service or repository
+		// Populate the categoryDataList with objects containing catName and catCount
+
+		return ResponseEntity.ok(categoryDataList);
 	}
 
 	@PostMapping("/add-course")
@@ -137,6 +156,51 @@ private ImageService imageService;
 		courseService.deleteCourse(id);
 		return "admin/courses";
 	}
+
+	// controlling country info
+
+
+	@PostMapping("/add-country")
+	public String addConInfo(@ModelAttribute Country country,
+							 @RequestParam("imageFile2") MultipartFile imageFile,
+							 @RequestParam("universityImageFile") MultipartFile universityImageFile) {
+		if (!imageFile.isEmpty() && !universityImageFile.isEmpty()) {
+			try {
+				String imageName = StringUtils.cleanPath(Objects.requireNonNull(imageFile.getOriginalFilename()));
+				Path imagePath = Paths.get("src/main/resources/static/assets/img").resolve(imageName);
+				Files.copy(imageFile.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
+				country.setCountryImage("/assets/img/" + imageName);
+
+				String universityImageName = StringUtils.cleanPath(Objects.requireNonNull(universityImageFile.getOriginalFilename()));
+				Path universityImagePath = Paths.get("src/main/resources/static/assets/img").resolve(universityImageName);
+				Files.copy(universityImageFile.getInputStream(), universityImagePath, StandardCopyOption.REPLACE_EXISTING);
+				country.setUniversityImage("/assets/img/" + universityImageName);
+			} catch (IOException e) {
+				// Handle the exception
+			}
+		}
+
+		countryInfo.saveCountryInfo(country);
+		return "redirect:/admin/country";
+	}
+	@GetMapping("/country")
+	public String country(Model model) {
+		List<Country> country = countryInfo.getAllCountryInfo();
+		model.addAttribute("country", country);
+		model.addAttribute("country", new Country());
+
+
+
+		return "admin/country";
+	}
+
+	@GetMapping("/delete-country/{id}")
+	public String deleteCountryInfo(@PathVariable Long id) {
+		countryInfo.deleteCountryInfo(id);
+		return "admin/country";
+	}
+
+
 }
 
 
