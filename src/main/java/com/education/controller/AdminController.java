@@ -157,6 +157,8 @@ private ImageService imageService;
 		return "admin/courses";
 	}
 
+
+
 	// controlling country info
 
 
@@ -185,9 +187,9 @@ private ImageService imageService;
 	}
 	@GetMapping("/country")
 	public String country(Model model) {
-		List<Country> country = countryInfo.getAllCountryInfo();
-		model.addAttribute("country", country);
-		model.addAttribute("country", new Country());
+		List<Country> countries = countryInfo.getAllCountryInfo();
+		model.addAttribute("countries", countries);
+		model.addAttribute("newCountry", new Country());
 
 
 

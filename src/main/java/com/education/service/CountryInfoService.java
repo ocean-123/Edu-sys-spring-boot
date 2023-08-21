@@ -34,6 +34,12 @@ public class CountryInfoService implements CountryInfo {
     public Long getTotalNumberOfCountry() {
         return countryRepo.count();
     }
+
+
+    @Override
+    public Country getCountryByName(String countryName) {
+        return countryRepo.findByCountryName(countryName);
+    }
 }
 
 

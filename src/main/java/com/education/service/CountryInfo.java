@@ -14,4 +14,7 @@ public interface CountryInfo {
     Long getTotalNumberOfCountry();
 
 
+    Country getCountryByName(String countryName);
+
+
 }

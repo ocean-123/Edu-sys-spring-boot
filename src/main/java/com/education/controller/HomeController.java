@@ -1,8 +1,10 @@
 package com.education.controller;
 
 
+import com.education.entity.Country;
 import com.education.entity.User;
 import com.education.repository.UserRepo;
+import com.education.service.CountryInfo;
 import com.education.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -19,9 +22,11 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private CountryInfo countryInfo;
 	@Autowired
 	private UserRepo userRepo;
+
 
 	@ModelAttribute
 	public void commonUser(Principal p, Model m) {
@@ -31,9 +36,28 @@ public class HomeController {
 			m.addAttribute("user", user);
 		}
 
+
 	}
 	@GetMapping("/")
-	public String home() {
+	public String home( Model model ) {
+
+
+		Country australiaCountry = countryInfo.getCountryByName("Australia");
+		Country canadaCountry =countryInfo.getCountryByName("Canada");
+		Country ukCountry =countryInfo.getCountryByName("Uk");
+		Country usaCountry =countryInfo.getCountryByName("USA");
+
+
+
+
+		if (australiaCountry != null && canadaCountry!=null && ukCountry!=null && usaCountry!=null) {
+			model.addAttribute("australiaCountryImage", australiaCountry.getCountryImage());
+			model.addAttribute("canadaCountryImage",canadaCountry.getCountryImage());
+			model.addAttribute("ukCountryImage", ukCountry.getCountryImage());
+			model.addAttribute("usaCountryImage", usaCountry.getCountryImage());
+
+
+		}
 		return "index";
 	}
 	@GetMapping("/index")

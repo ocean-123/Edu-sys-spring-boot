@@ -3,21 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>profile </title>
+    <div th:replace="fragment/adminLinks::adminLinks"></div>
+
 </head>
-<body>
+<body id="body-pd">
+<div th:replace="fragment/adminHeader::adminHeader">
+
+</div>
+
+<div th:replace="fragment/adminContent::adminContent"></div>
 
 
-<section class="text-center">
 
 
 
 
-    <h4>Name: [[${user.username}]]</h4>
-    <h4>Email: [[${user.email}]]</h4>
-    <h4>Mob No: [[${user.mobileNo}]]</h4>
-    <h4>Role: [[${user.role}]]</h4>
 
-</section>
+<!--    <h4>Name: [[${user.username}]]</h4>-->
+<!--    <h4>Email: [[${user.email}]]</h4>-->
+<!--    <h4>Mob No: [[${user.mobileNo}]]</h4>-->
+<!--    <h4>Role: [[${user.role}]]</h4>-->
+
+
+    <section class="vh-100" style="background-color: #f4f5f7;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; background-color:  #5fcf80";>
+                                <img src="/assets/img/IMG-20230307-WA0009.jpg"
+                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                                <h5>[[${user.username}]]</h5>
+                                <p>[[${user.role}]]</p>
+                                <i class="far fa-edit mb-5"></i>
+                                <button href="admin/update" class="btn-link bg-primary" style="color: white">  update</button>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Information</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>FirstName </h6>
+                                            <p class="text-muted">[[${user.first_name}]]</p>
+
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>LastName </h6>
+                                            <p class="text-muted">[[${user.last_name}]]</p>
+
+                                        </div>
+
+                                            <h6>Email</h6>
+                                            <p class="text-muted">[[${user.email}]]</p>
+
+
+                                            <h6>Phone</h6>
+                                            <p class="text-muted"> [[${user.mobileNo}]]</p>
+
+                                    </div>
+                                    <h6>Projects</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Title</h6>
+                                            <h7 class="text-muted">Your Educational Consultancy </h7>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>About</h6>
+                                            <p class="text-muted"> it is web based application  </p></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<div th:replace="fragment/adminScript::adminScript"></div>
+
+
 
 </body>
 </html>

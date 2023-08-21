@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="/admin/base_admin::layout(~{::section})">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <div th:replace="fragment/adminLinks::adminLinks"></div>
 
-<section>
+</head>
+<body id="body-pd">
+<div th:replace="fragment/adminHeader::adminHeader">
+
+</div>
+
+<div th:replace="fragment/adminContent::adminContent"></div>
 
 
 <div class ="container">
@@ -50,7 +55,7 @@
 
 
 </div>
-</section>
+<div th:replace="fragment/adminScript::adminScript"></div>
 
 
 </body>
