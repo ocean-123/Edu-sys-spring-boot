@@ -52,10 +52,21 @@ public class SecurityConfig {
 		.requestMatchers("/**").permitAll().and()
 		.formLogin().loginPage("/signin").loginProcessingUrl("/userLogin")
 		.successHandler(sucessHandler)
-		.permitAll();
-		
-		
+
+		.permitAll()
+				.and()
+
+		.oauth2Login(oauth2Login ->
+			oauth2Login
+
+					.defaultSuccessUrl("/user/profile")
+	);
+
+
 		return http.build();
+
+
+
 	}
 
 }

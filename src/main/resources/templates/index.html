@@ -157,16 +157,16 @@
              <div class="col-sm-5 equal_height content">
                     <a href="https://thenext.edu.np/abroad/study-in-canada/">
                         <div class="box" style="'background-image: url(' + ${canadaCountryImage} + ')'">
-                            <img  th:src="${canadaCountryImage}" alt="Canada Image"  width="100%" height="
+                            <img  th:src="${canadaCountryImage}" alt="Canada Image"  width="100%" height="200px
 " />
                             <h4>Study in </br>Canada</h4>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-5 equal_height content">
+                <div class="col-sm-5 equal_height content float-end">
                     <a href="https://thenext.edu.np/abroad/study-in-uk-united-kingdom/">
                         <div class="box" style="'background-image: url(' + ${ukCountryImage} + ')'">
-                            <img  th:src="${ukCountryImage}" alt="UK Image" width="100%" />
+                            <img  th:src="${ukCountryImage}" alt="UK Image" width="100%" height="200px" />
                             <h4>Study in </br>UK</h4>
                         </div>
                         <br>
@@ -175,15 +175,15 @@
                 <div class="col-sm-4 equal_height content">
                     <a href="https://thenext.edu.np/abroad/study-in-australia/">
                         <div class="box" style="'background-image: url(' + ${australiaCountryImage} + ')'">
-                            <img  th:src="${australiaCountryImage}" alt="Australia Image" width="100%" />
+                            <img  th:src="${australiaCountryImage}" alt="Australia Image" width="100%" height="200px" />
                             <h4>Study in </br>Australia</h4>
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-4 equal_height content">
+                <div class="col-sm-4 equal_height content ">
                     <a href="https://thenext.edu.np/abroad/study-in-usa/">
                         <div class="box" style="'background-image: url(' + ${usaCountryImage} + ')'">
-                            <img  th:src="${usaCountryImage}" alt="Canada Image" width="100%" />
+                            <img  th:src="${usaCountryImage}" alt="Canada Image" width="100%" height="200px"/>
                             <h4>Study in </br>USA</h4>
                         </div>
                     </a>
@@ -192,116 +192,64 @@
             </div>
         </div>
     </section>
-<!--    <style>-->
-<!--        section.study_list .row .content:nth-child(1),-->
-<!--        section.study_list .row .content:nth-child(2){-->
-<!--            width:50% !important;-->
-<!--        }-->
-<!--        @media(max-width:767px){-->
-<!--            section.study_list .row .content:nth-child(1),-->
-<!--            section.study_list .row .content:nth-child(2){-->
-<!--                width:100% !important;-->
-<!--                height: 50%;!important;-->
-<!--            }-->
-<!--        }-->
-<!--    </style>-->
+
+    <style>
+
+
+
+        .box{
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background-color:  #5fcf80;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .box h4 {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: white;
+        }
+    </style>
 
 
 
 
     <!-- ======= Popular Courses Section ======= -->
-    <section id="popular-courses" class="courses">
+    <section id="events" class="events">
         <div class="container" data-aos="fade-up">
 
-            <div class="section-title">
-                <h2>Courses</h2>
-                <p>Popular Courses</p>
+            <div class="row">
+                <h3 class="text-center">Events</h3>
             </div>
 
-            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+            <div class="row">
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="course-item">
-                        <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>Web Development</h4>
-                                <p class="price">$169</p>
-                            </div>
-
-                            <h3><a href="course-details.html">Website Design</a></h3>
-                            <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                    <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                    <span>Antonio</span>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                    <i class="bx bx-user"></i>&nbsp;50
-                                    &nbsp;&nbsp;
-                                    <i class="bx bx-heart"></i>&nbsp;65
-                                </div>
-                            </div>
+                <div  th:each="course : ${courses}"  class="col-md-6 d-flex align-items-stretch">
+                    <div class="card">
+                        <div class="card-img">
+                            <img th:src="${course.image}" th:alt="${course.coursename}" style="max-width: 100%;">
+                        </div>
+                        <div class="card-body">
+                            <h3 th:text="${course.coursename}"></h3>
+                            <p class="fst-italic text-center">Sunday, September 26th at 7:00 pm</p>
+                            <h7 th:text="${course.courseDetails}"></h7>
                         </div>
                     </div>
-                </div> <!-- End Course Item-->
+                </div>
 
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-                    <div class="course-item">
-                        <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>Marketing</h4>
-                                <p class="price">$250</p>
-                            </div>
 
-                            <h3><a href="course-details.html">Search Engine Optimization</a></h3>
-                            <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                    <img src="assets/img/trainers/trainer-2.jpg" class="img-fluid" alt="">
-                                    <span>Lana</span>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                    <i class="bx bx-user"></i>&nbsp;35
-                                    &nbsp;&nbsp;
-                                    <i class="bx bx-heart"></i>&nbsp;42
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- End Course Item-->
-
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                    <div class="course-item">
-                        <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-                        <div class="course-content">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4>Content</h4>
-                                <p class="price">$180</p>
-                            </div>
-
-                            <h3><a href="course-details.html">Copywriting</a></h3>
-                            <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                            <div class="trainer d-flex justify-content-between align-items-center">
-                                <div class="trainer-profile d-flex align-items-center">
-                                    <img src="assets/img/trainers/trainer-3.jpg" class="img-fluid" alt="">
-                                    <span>Brandon</span>
-                                </div>
-                                <div class="trainer-rank d-flex align-items-center">
-                                    <i class="bx bx-user"></i>&nbsp;20
-                                    &nbsp;&nbsp;
-                                    <i class="bx bx-heart"></i>&nbsp;85
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- End Course Item-->
 
             </div>
 
         </div>
-    </section><!-- End Popular Courses Section -->
+    </section><!-- End Events Section -->
 
     <!-- ======= Trainers Section ======= -->
     <section id="trainers" class="trainers">

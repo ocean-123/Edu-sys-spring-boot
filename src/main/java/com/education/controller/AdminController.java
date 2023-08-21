@@ -121,16 +121,16 @@ private ImageService imageService;
 		return "admin/courses";
 	}
 
-	@GetMapping("/profileadmin")
-	@ResponseBody // Indicate that the returned object should be used as the response body
-	public ResponseEntity<List<Course>> Cprofile() {
-		List<Course> categoryDataList =courseService.getAllCourses();
-
-		// Get the data from your service or repository
-		// Populate the categoryDataList with objects containing catName and catCount
-
-		return ResponseEntity.ok(categoryDataList);
-	}
+//	@GetMapping("/profileadmin")
+//	@ResponseBody // Indicate that the returned object should be used as the response body
+//	public ResponseEntity<List<Course>> Cprofile() {
+//		List<Course> categoryDataList =courseService.getAllCourses();
+//
+//		// Get the data from your service or repository
+//		// Populate the categoryDataList with objects containing catName and catCount
+//
+//		return ResponseEntity.ok(categoryDataList);
+//	}
 
 	@PostMapping("/add-course")
 	public String addCourse(@ModelAttribute Course newCourse,

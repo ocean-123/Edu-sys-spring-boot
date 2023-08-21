@@ -4,6 +4,8 @@ package com.education.controller;
 import com.education.entity.User;
 import com.education.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,9 @@ public class UserController {
 	}
 
 	@GetMapping("/profile")
-	public String profile() {
+	public String profile(@AuthenticationPrincipal OAuth2User principal, Model model) {
+		model.addAttribute("user", principal);
+
 		return "user/profile";
 	}
 

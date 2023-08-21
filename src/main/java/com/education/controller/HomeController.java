@@ -2,9 +2,11 @@ package com.education.controller;
 
 
 import com.education.entity.Country;
+import com.education.entity.Course;
 import com.education.entity.User;
 import com.education.repository.UserRepo;
 import com.education.service.CountryInfo;
+import com.education.service.CourseService;
 import com.education.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CourseService courseService;
 	@Autowired
 	private CountryInfo countryInfo;
 	@Autowired
@@ -40,6 +45,9 @@ public class HomeController {
 	}
 	@GetMapping("/")
 	public String home( Model model ) {
+
+		List<Course> courses = courseService.getAllCourses();
+		model.addAttribute("courses", courses);
 
 
 		Country australiaCountry = countryInfo.getCountryByName("Australia");
@@ -61,7 +69,29 @@ public class HomeController {
 		return "index";
 	}
 	@GetMapping("/index")
-	public String index() {
+	public String index(Model model) {
+
+
+		List<Course> courses = courseService.getAllCourses();
+		model.addAttribute("courses", courses);
+
+
+		Country australiaCountry = countryInfo.getCountryByName("Australia");
+		Country canadaCountry =countryInfo.getCountryByName("Canada");
+		Country ukCountry =countryInfo.getCountryByName("Uk");
+		Country usaCountry =countryInfo.getCountryByName("USA");
+
+
+
+
+		if (australiaCountry != null && canadaCountry!=null && ukCountry!=null && usaCountry!=null) {
+			model.addAttribute("australiaCountryImage", australiaCountry.getCountryImage());
+			model.addAttribute("canadaCountryImage",canadaCountry.getCountryImage());
+			model.addAttribute("ukCountryImage", ukCountry.getCountryImage());
+			model.addAttribute("usaCountryImage", usaCountry.getCountryImage());
+
+
+		}
 		return "index";
 	}
 	@GetMapping("/ieltsClass")
@@ -102,7 +132,11 @@ public class HomeController {
 	}
 
 	@GetMapping("/events")
-	public String event() {
+	public String event(Model model) {
+
+
+		List<Course> courses = courseService.getAllCourses();
+		model.addAttribute("courses", courses);
 		return "events";
 	}
 
